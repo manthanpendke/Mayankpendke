@@ -346,7 +346,7 @@ h2::after {
     }
 
     .timeline-item::after {
-        left: 20px; /* align bubble with moved line */
+        left: 28px; /* align bubble with moved line */
         right: auto;
         top: 22px;
     }
