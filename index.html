@@ -5,9 +5,40 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Mayank Pendke — React.js Developer</title>
 
+  <!-- main stylesheet -->
   <link rel="stylesheet" href="styles.css" />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
+  <!-- small avatar styles to enforce circular crop and top-half view -->
+  <style>
+    /* Avatar container centered below About Me heading */
+    .about-avatar {
+      display: flex;
+      justify-content: center;
+      margin: 1rem 0 1.25rem; /* space between title and paragraph */
+    }
+
+    /* Circular avatar, crops to top half of image */
+    .about-avatar img {
+      width: 200px;            /* adjust size as needed */
+      height: 200px;           /* same as width to keep circle */
+      border-radius: 50%;
+      object-fit: cover;       /* fill the circle */
+      object-position: top center; /* show upper half of original image */
+      box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+      border: 6px solid #fff;  /* subtle white ring */
+      display: block;
+    }
+
+    /* Smaller avatar on mobile */
+    @media (max-width: 767px) {
+      .about-avatar img {
+        width: 140px;
+        height: 140px;
+      }
+    }
+  </style>
 </head>
 <body>
   <!-- Navbar -->
@@ -41,13 +72,15 @@
   <!-- About -->
   <section id="about" class="section about-section">
     <div class="container about-container">
-      <div class="about-image">
-        <!-- 🔧 Update this path to your actual image file -->
-        <img src="profile photo.jpeg" alt="Mayank Pendke - Profile Photo" />
-      </div>
-
       <div class="about-text">
         <h2>About Me</h2>
+
+        <!-- circular avatar (top half crop) placed under the title -->
+        <div class="about-avatar">
+          <!-- update the path if your image filename/location differs -->
+          <img src="profile photo.jpeg" alt="Mayank Pendke — Profile Photo" />
+        </div>
+
         <p>Results-oriented React.js Developer with 4.5 years of experience in frontend development and AI/ML-driven web application design. Skilled in building modular, responsive, and performance-optimized UI components. Enthusiastic about applying modern JavaScript frameworks and data-driven approaches to solve real-world problems.</p>
         <a href="Blue and White Clean Professional A4 Resume.pdf" download class="btn btn-primary">Download Resume</a>
       </div>
@@ -115,6 +148,7 @@
     <div class="container">
       <h2>Projects</h2>
       <div class="projects-grid">
+        <!-- your four project cards here -->
         <div class="project-card">
           <div class="project-info">
             <h3>Bill Compare Tool</h3>
@@ -146,6 +180,7 @@
             <p class="tech-stack"><strong>Tech Stack:</strong> React.js, Redux, REST APIs, Jest</p>
           </div>
         </div>
+
       </div>
     </div>
   </section>
@@ -155,7 +190,6 @@
     <div class="container">
       <h2>Certifications</h2>
       <ul class="certification-list">
-        <!-- 🔧 Update this path to where your certificate file is stored -->
         <li><a href="react certificate.pdf" target="_blank">Namaste React.js Certificate</a></li>
       </ul>
     </div>
