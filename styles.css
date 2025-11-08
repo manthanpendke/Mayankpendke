@@ -240,6 +240,9 @@ h2::after {
 /* === Education Timeline (final version: balanced + centered) === */
 /* === Education timeline: variable card width + perfectly centered line & bubbles === */
 /* === Education Timeline (final version: balanced + centered) === */
+/* ===== FINAL: Stable Education Timeline (fixed card sizes, centered line + bubbles) ===== */
+
+/* container */
 .timeline {
   position: relative;
   max-width: 1100px;
@@ -247,162 +250,153 @@ h2::after {
   padding: 3rem 0;
 }
 
-/* perfect center line */
+/* center vertical line (exact center) */
 .timeline::after {
   content: '';
   position: absolute;
-  width: 3px;
-  background-color: var(--primary-color);
+  left: 50%;
   top: 0;
   bottom: 0;
-  left: 50%;
-  transform: translateX(-1.5px); /* center correction for 3px line */
+  width: 3px;
+  transform: translateX(-50%);
+  background-color: var(--primary-color);
   border-radius: 2px;
   z-index: 1;
 }
 
-/* timeline cards container */
+/* timeline item: anchor either left or right of center */
+/* use a fixed max-width so cards remain visually stable */
 .timeline-item {
   position: relative;
-  width: 45%; /* equal card width for both sides */
-  padding: 0 20px;
-  margin: 2.5rem 0;
   box-sizing: border-box;
+  margin: 2.2rem 0;
+  padding: 0 20px;
+  width: auto;
+  max-width: 420px;        /* fix: prevents card from shrinking to narrow column */
 }
 
-/* marker (bubble) perfectly aligned with line */
+/* card appearance (consistent) */
+.timeline-item .timeline-content {
+  display: block;
+  background-color: var(--card-bg);
+  padding: 18px 24px;
+  border-radius: 10px;
+  box-shadow: var(--shadow);
+  width: 100%;
+}
+
+/* left-side items: right edge sits at center */
+.timeline-item:nth-child(odd) {
+  right: 50%;
+  left: auto;
+  text-align: right;
+  transform: translateX(-10px); /* slight visual gap from the center line */
+}
+
+/* right-side items: left edge sits at center */
+.timeline-item:nth-child(even) {
+  left: 50%;
+  right: auto;
+  text-align: left;
+  transform: translateX(10px);  /* slight visual gap from the center line */
+}
+
+/* bubble / marker positioned relative to each item.
+   Because each item is anchored at the center, placing the bubble offset
+   aligns it exactly on the center line. */
 .timeline-item::before {
   content: '';
   position: absolute;
+  top: 28px;
   width: 18px;
   height: 18px;
   border-radius: 50%;
   background: #fff;
   border: 3px solid var(--primary-color);
-  top: 28px;
   z-index: 2;
+  box-sizing: border-box;
 }
 
-/* left (odd) items */
-.timeline-item:nth-child(odd) {
-  left: 0;
-  text-align: right;
-}
+/* bubble on left items: place on center line */
 .timeline-item:nth-child(odd)::before {
-  right: -12px;
+  right: calc(50% - 9px);   /* 9px = half bubble width, keeps it on exact center */
+  left: auto;
+  transform: translateX(0);
 }
 
-/* right (even) items */
-.timeline-item:nth-child(even) {
-  left: 55%;
-  text-align: left;
-}
+/* bubble on right items: place on center line */
 .timeline-item:nth-child(even)::before {
-  left: -12px;
+  left: calc(50% - 9px);
+  right: auto;
+  transform: translateX(0);
 }
 
-/* content card styling */
-.timeline-item .timeline-content {
-  background-color: var(--card-bg);
-  padding: 20px 24px;
-  border-radius: 10px;
-  box-shadow: var(--shadow);
-  display: inline-block;
-  width: 100%;
-  max-width: 100%;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-/* slight hover effect for modern feel */
-.timeline-item .timeline-content:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
-}
-
+/* typography and spacing inside cards */
 .timeline-item .timeline-content h3 {
+  margin: 0 0 6px;
   font-size: 1.15rem;
   font-weight: 700;
-  margin-bottom: 6px;
 }
-
-.timeline-item .timeline-content .institution {
-  font-size: 1rem;
-  color: #555;
-}
-
+.timeline-item .timeline-content .institution,
 .timeline-item .timeline-content .date {
-  font-size: 0.95rem;
-  color: #666;
-  display: block;
-  margin-top: 4px;
+  margin: 4px 0 0;
+  color: #555;
+  font-size: 0.98rem;
 }
 
-/* Mobile responsive stack */
-/* === Mobile timeline refinements (paste into styles.css, replace old mobile rules) === */
-/* ===== Mobile: fixed timeline layout (replace existing mobile rules) ===== */
+/* ----- MOBILE: stacked layout with consistent card width and aligned bubble ----- */
 @media (max-width: 767px) {
   .timeline {
-    padding: 1.25rem 0;
+    padding: 1.5rem 0;
   }
 
-  /* move the center line in from the edge so it sits comfortably on small screens */
+  /* move the center line a little in from left edge for mobile */
   .timeline::after {
-    left: 40px;           /* line position from left edge */
+    left: 36px;           /* adjust only if needed for your layout */
     width: 3px;
     top: 12px;
     bottom: 12px;
     transform: none;
   }
 
-  /* stacked items: full width cards, consistent left space reserved for marker + gap */
+  /* stacked full-width items; reserve space on left for the line + bubble */
   .timeline-item {
     width: 100% !important;
     left: 0 !important;
     right: auto !important;
-    padding-left: 100px;  /* space for line + bubble + gap */
-    margin: 1rem 0;       /* vertical spacing between cards */
+    padding-left: 96px;   /* reserve space for marker (36px line + bubble + gap) */
+    margin: 1.1rem 0;
     box-sizing: border-box;
     text-align: left !important;
+    transform: none !important; /* cancel desktop translate */
+    max-width: none;
   }
 
-  /* bubble centered on the line using translateX(-50%) for pixel-perfect alignment */
+  /* bubble centered on the mobile line using translateX */
   .timeline-item::before {
-    left: 40px;           /* same as line left */
-    top: 26px;            /* vertical offset for bubble */
-    width: 18px;
-    height: 18px;
+    left: 36px;           /* same as .timeline::after left */
+    top: 26px;
     transform: translateX(-50%);
-    background: #fff;
-    border: 3px solid var(--primary-color);
-    box-sizing: border-box;
-    z-index: 2;
   }
 
-  /* card content width: account for reserved left space and small right gap */
+  /* card content width: account for reserved left space */
   .timeline-item .timeline-content {
-    display: block;
-    width: calc(100% - 110px); /* 110 = left padding (100) + extra gap */
+    width: calc(100% - 116px); /* 116 = left padding(96) + small gap */
     padding: 14px 18px;
     border-radius: 10px;
-    box-shadow: var(--shadow);
   }
 
-  /* slightly smaller typography for better mobile fit */
+  /* mobile typography */
   .timeline-item .timeline-content h3 {
     font-size: 1.05rem;
     margin-bottom: 8px;
   }
   .timeline-item .timeline-content .institution,
   .timeline-item .timeline-content .date {
-    font-size: 0.94rem;
-    margin: 4px 0 0;
-  }
-
-  /* ensure stacked spacing is consistent */
-  .timeline-item + .timeline-item {
-    margin-top: 0.9rem;
+    font-size: 0.95rem;
   }
 }
+
 
 /* === Internships === */
 .experience-grid {
