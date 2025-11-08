@@ -248,10 +248,10 @@ h2::after {
 .timeline::after {
   content: '';
   position: absolute;
-  width: 4px;
+  width: 3px; /* thinner line for cleaner look */
   background-color: var(--primary-color);
-  top: 10px;
-  bottom: 10px;
+  top: 0;
+  bottom: 0;
   left: 50%;
   transform: translateX(-50%);
   border-radius: 2px;
@@ -272,12 +272,12 @@ h2::after {
 .timeline-item::before {
   content: '';
   position: absolute;
-  width: 18px;
-  height: 18px;
+  width: 20px;
+  height: 20px;
   border-radius: 50%;
   background: #fff;
-  border: 4px solid var(--primary-color);
-  top: 22px;
+  border: 3px solid var(--primary-color);
+  top: 28px; /* adjust this to fine-tune vertical centering */
   z-index: 2;
   box-sizing: border-box;
 }
@@ -288,8 +288,9 @@ h2::after {
   text-align: right;
 }
 .timeline-item:nth-child(odd)::before {
-  right: -9px; /* sits on the vertical line */
+  right: -11px; /* balanced alignment */
 }
+
 
 /* right (even) items */
 .timeline-item:nth-child(even) {
@@ -297,7 +298,7 @@ h2::after {
   text-align: left;
 }
 .timeline-item:nth-child(even)::before {
-  left: -9px; /* sits on the vertical line */
+  left: -11px;
 }
 
 /* content card inside each item: consistent width & padding */
