@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Mayank Pendke</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="container">
+      <a href="#home" class="nav-logo">Mayank Pendke</a>
+      <ul class="nav-menu">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#education">Education</a></li>
+        <li><a href="#work-experience">Work Experience</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#certifications">Certifications</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      <button class="hamburger" id="hamburger-button"><i class="fas fa-bars"></i></button>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section id="home" class="hero">
+    <div class="container hero-content">
+      <h1>Hi, I'm <span class="highlight">Mayank Pendke</span></h1>
+      <p class="subtitle">React.js Developer</p>
+      <a href="#projects" class="btn btn-primary">View My Work</a>
+      <a href="#contact" class="btn btn-secondary">Contact Me</a>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section id="about" class="section about-section">
+    <div class="container about-container">
+       <div class="about-image">
+      <img src="mayank.jpg" alt="Mayank Pendke - Profile Photo" />
+    </div>
+
+      <div class="about-text">
+        <h2>About Me</h2>
+        <p>Results-oriented React.js Developer with 4.5 years of experience in frontend development and AI/ML-driven web application design. Skilled in building modular, responsive, and performance-optimized UI components. Enthusiastic about applying modern JavaScript frameworks and data-driven approaches to solve real-world problems.</p>
+        <a href="Blue and White Clean Professional A4 Resume.pdf" download class="btn btn-primary">Download Resume</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Skills -->
+  <section id="skills" class="section skills-section">
+    <div class="container">
+      <h2>My Skills</h2>
+      <div class="skills-grid">
+        <div class="skill-item">React.js</div>
+        <div class="skill-item">JavaScript / TypeScript</div>
+        <div class="skill-item">HTML & CSS</div>
+        <div class="skill-item">Tailwind CSS</div>
+        <div class="skill-item">Redux</div>
+        <div class="skill-item">Unit Testing (Jest)</div>
+        <div class="skill-item">Node.js</div>
+        <div class="skill-item">REST APIs</div>
+        <div class="skill-item">Performance Optimization</div>
+        <div class="skill-item">CI/CD & Git</div>
+        <div class="skill-item">Accessibility & Responsive Design</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Education -->
+  <section id="education" class="section education-section">
+    <div class="container">
+      <h2>Education</h2>
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-content">
+            <h3>B.E. - Computer Science</h3>
+            <p class="institution">Savitribai Phule Pune University</p>
+            <span class="date">2016 - 2020</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Work Experience -->
+  <section id="work-experience" class="section internships-section">
+    <div class="container">
+      <h2>Work Experience</h2>
+      <div class="experience-grid">
+        <div class="experience-card">
+          <h3>Senior Consultant - RIA Advisory</h3>
+          <p class="institution"><i class="fas fa-building"></i> RIA Advisory</p>
+          <p class="date"><i class="fas fa-calendar-alt"></i> August 2023 - Present</p>
+          <ul class="responsibilities">
+            <li><strong>Bill Compare Tool</strong> — Developed a React.js web app for automated billing data validation between Legacy CIS and CAMS. Built interactive dashboards and visualization components to identify discrepancies and analyze billing exceptions.</li>
+            <li>Integrated AI-driven data extraction (OCR) for PDF comparison and automated anomaly detection workflows to streamline validations.</li>
+            <li>Collaborated with backend teams (FastAPI) to handle multi-format data processing (XML, PDF) and integrated CI/CD for reliable deployments.</li>
+            <li>Implemented responsive design with light/dark mode toggle using Tailwind CSS and React context for better UX and accessibility.</li>
+          </ul>
+        </div>
+
+        <div class="experience-card">
+          <h3>Associate Consultant</h3>
+          <p class="institution"><i class="fas fa-building"></i> Atos Syntel</p>
+          <p class="date"><i class="fas fa-calendar-alt"></i> March 2021 - August 2023</p>
+          <ul class="responsibilities">
+            <li>Worked as a React.js developer on healthcare administration projects focusing on responsive web design and API integration.</li>
+            <li>Developed reusable components and optimized code for performance and maintainability using Redux for state management.</li>
+            <li>Used GIT for version control and Jest for unit testing to ensure code reliability and quality.</li>
+            <li>Participated in SDLC activities and collaborated in agile sprints delivering production-ready features.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects -->
+  <section id="projects" class="section projects-section">
+    <div class="container">
+      <h2>Projects</h2>
+      <div class="projects-grid">
+        <div class="project-card">
+          <div class="project-info">
+            <h3>Bill Compare Tool</h3>
+            <p>Automated billing comparison platform built with React.js that validates billing data between Legacy CIS and CAMS. Includes dashboards to surface discrepancies and integrates OCR-based data extraction to process PDF bills.</p>
+            <p class="tech-stack"><strong>Tech Stack:</strong> React.js, Tailwind CSS, OCR integration, FastAPI (backend), CI/CD</p>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <div class="project-info">
+            <h3>Ocular AI</h3>
+            <p>Front-end for an AI-powered data and workflow management platform. Built modular UI components and a design system for data fabric and intelligence modules to improve usability and consistency.</p>
+            <p class="tech-stack"><strong>Tech Stack:</strong> React.js, Component Library, REST APIs, Performance Optimization</p>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <div class="project-info">
+            <h3>Project Frogmouth - Insurance Claim Management</h3>
+            <p>Led the frontend development for an insurance claim management system using React.js and Material UI. Implemented scalable components, Redux for state management, and collaborated with backend teams (ASP.Net) for integrations.</p>
+            <p class="tech-stack"><strong>Tech Stack:</strong> React.js, Material UI, Redux, ASP.Net (backend)</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Certifications -->
+  <section id="certifications" class="section certifications-section">
+    <div class="container">
+      <h2>Certifications</h2>
+      <ul class="certification-list">
+        <li><a href="#" target="_blank">Professional React.js Certification</a></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact" class="section contact-section">
+    <div class="container">
+      <h2>Contact</h2>
+      <p>Let's collaborate! Reach out to me:</p>
+      <div class="contact-info">
+        <a href="mailto:pendke14@gmail.com"><i class="fas fa-envelope"></i> pendke14@gmail.com</a>
+        <a href="tel:+917385098710"><i class="fas fa-phone"></i> +91-7385098710</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <p>© <span id="current-year"></span> Mayank Pendke. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
