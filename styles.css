@@ -237,6 +237,7 @@ h2::after {
 /* === Timeline (Education) === */
 /* ===== Education timeline (clean alternating layout) ===== */
 /* ===== Education timeline (refined for even spacing & aligned markers) ===== */
+/* === Education Timeline (final version: balanced + centered) === */
 .timeline {
   position: relative;
   max-width: 1100px;
@@ -244,42 +245,40 @@ h2::after {
   padding: 3rem 0;
 }
 
-/* central vertical line centered exactly */
+/* perfect center line */
 .timeline::after {
   content: '';
   position: absolute;
-  width: 3px; /* thinner line for cleaner look */
+  width: 3px;
   background-color: var(--primary-color);
   top: 0;
   bottom: 0;
   left: 50%;
-  transform: translateX(-50%);
+  transform: translateX(-1.5px); /* center correction for 3px line */
   border-radius: 2px;
   z-index: 1;
 }
 
-/* timeline item container */
+/* timeline cards container */
 .timeline-item {
   position: relative;
-  width: calc(50% - 60px); /* consistent width with gap for the center line */
+  width: 45%; /* equal card width for both sides */
   padding: 0 20px;
+  margin: 2.5rem 0;
   box-sizing: border-box;
-  margin: 2.2rem 0; /* consistent vertical spacing */
-  min-height: 80px; /* prevents very small items */
 }
 
-/* the circle marker (on the vertical line) */
+/* marker (bubble) perfectly aligned with line */
 .timeline-item::before {
   content: '';
   position: absolute;
-  width: 20px;
-  height: 20px;
+  width: 18px;
+  height: 18px;
   border-radius: 50%;
   background: #fff;
   border: 3px solid var(--primary-color);
-  top: 28px; /* adjust this to fine-tune vertical centering */
+  top: 28px;
   z-index: 2;
-  box-sizing: border-box;
 }
 
 /* left (odd) items */
@@ -288,76 +287,81 @@ h2::after {
   text-align: right;
 }
 .timeline-item:nth-child(odd)::before {
-  right: -11px; /* balanced alignment */
+  right: -12px;
 }
-
 
 /* right (even) items */
 .timeline-item:nth-child(even) {
-  left: 50%;
+  left: 55%;
   text-align: left;
 }
 .timeline-item:nth-child(even)::before {
-  left: -11px;
+  left: -12px;
 }
 
-/* content card inside each item: consistent width & padding */
+/* content card styling */
 .timeline-item .timeline-content {
   background-color: var(--card-bg);
-  padding: 18px;
-  border-radius: 8px;
+  padding: 20px 24px;
+  border-radius: 10px;
   box-shadow: var(--shadow);
   display: inline-block;
-  max-width: 100%;
   width: 100%;
+  max-width: 100%;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-/* Slightly smaller font size for date/institution to fit neatly */
-.timeline-item .timeline-content .institution,
+/* slight hover effect for modern feel */
+.timeline-item .timeline-content:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+}
+
+.timeline-item .timeline-content h3 {
+  font-size: 1.15rem;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+
+.timeline-item .timeline-content .institution {
+  font-size: 1rem;
+  color: #555;
+}
+
 .timeline-item .timeline-content .date {
   font-size: 0.95rem;
-  color: #555;
-  margin: 4px 0 0;
+  color: #666;
+  display: block;
+  margin-top: 4px;
 }
 
-/* Make B.E. card not overly wide: limit heading width so it visually matches others */
-.timeline-item .timeline-content h3 {
-  margin-bottom: 6px;
-  font-size: 1.15rem;
-  line-height: 1.2;
-}
-
-/* Responsive: stack items and move the line left */
+/* Mobile responsive stack */
 @media (max-width: 767px) {
   .timeline {
-    padding: 1.5rem 0;
+    padding: 2rem 0;
   }
 
   .timeline::after {
     left: 20px;
+    transform: none;
   }
 
   .timeline-item {
     width: 100%;
-    padding-left: 70px; /* space for marker */
-    padding-right: 20px;
+    padding-left: 70px;
+    margin: 1.5rem 0;
     text-align: left !important;
-    margin: 1.2rem 0;
   }
 
   .timeline-item::before {
     left: 20px;
     right: auto;
-    top: 22px;
+    top: 25px;
   }
 
   .timeline-item:nth-child(odd),
   .timeline-item:nth-child(even) {
     left: 0;
-  }
-
-  .timeline-item .timeline-content {
-    width: 100%;
   }
 }
 
