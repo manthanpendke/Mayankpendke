@@ -242,161 +242,125 @@ h2::after {
 /* === Education Timeline (final version: balanced + centered) === */
 /* ===== FINAL: Stable Education Timeline (fixed card sizes, centered line + bubbles) ===== */
 
-/* container */
+/* ===== RESTORE: Stable Education Timeline (original look + precise alignment) ===== */
+
 .timeline {
-  position: relative;
-  max-width: 1100px;
-  margin: 0 auto;
-  padding: 3rem 0;
+    position: relative;
+    max-width: 800px; /* same as original */
+    margin: 0 auto;
+    padding: 2rem 0;
 }
 
-/* center vertical line (exact center) */
+/* central vertical line */
 .timeline::after {
-  content: '';
-  position: absolute;
-  left: 50%;
-  top: 0;
-  bottom: 0;
-  width: 3px;
-  transform: translateX(-50%);
-  background-color: var(--primary-color);
-  border-radius: 2px;
-  z-index: 1;
+    content: '';
+    position: absolute;
+    width: 4px;
+    background-color: var(--primary-color);
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    /* center the 4px line precisely */
+    margin-left: -2px;
+    border-radius: 2px;
+    z-index: 1;
 }
 
-/* timeline item: anchor either left or right of center */
-/* use a fixed max-width so cards remain visually stable */
+/* timeline item (keeps original card sizing behavior) */
 .timeline-item {
-  position: relative;
-  box-sizing: border-box;
-  margin: 2.2rem 0;
-  padding: 0 20px;
-  width: auto;
-  max-width: 420px;        /* fix: prevents card from shrinking to narrow column */
-}
-
-/* card appearance (consistent) */
-.timeline-item .timeline-content {
-  display: block;
-  background-color: var(--card-bg);
-  padding: 18px 24px;
-  border-radius: 10px;
-  box-shadow: var(--shadow);
-  width: 100%;
-}
-
-/* left-side items: right edge sits at center */
-.timeline-item:nth-child(odd) {
-  right: 50%;
-  left: auto;
-  text-align: right;
-  transform: translateX(-10px); /* slight visual gap from the center line */
-}
-
-/* right-side items: left edge sits at center */
-.timeline-item:nth-child(even) {
-  left: 50%;
-  right: auto;
-  text-align: left;
-  transform: translateX(10px);  /* slight visual gap from the center line */
-}
-
-/* bubble / marker positioned relative to each item.
-   Because each item is anchored at the center, placing the bubble offset
-   aligns it exactly on the center line. */
-.timeline-item::before {
-  content: '';
-  position: absolute;
-  top: 28px;
-  width: 18px;
-  height: 18px;
-  border-radius: 50%;
-  background: #fff;
-  border: 3px solid var(--primary-color);
-  z-index: 2;
-  box-sizing: border-box;
-}
-
-/* bubble on left items: place on center line */
-.timeline-item:nth-child(odd)::before {
-  right: calc(50% - 9px);   /* 9px = half bubble width, keeps it on exact center */
-  left: auto;
-  transform: translateX(0);
-}
-
-/* bubble on right items: place on center line */
-.timeline-item:nth-child(even)::before {
-  left: calc(50% - 9px);
-  right: auto;
-  transform: translateX(0);
-}
-
-/* typography and spacing inside cards */
-.timeline-item .timeline-content h3 {
-  margin: 0 0 6px;
-  font-size: 1.15rem;
-  font-weight: 700;
-}
-.timeline-item .timeline-content .institution,
-.timeline-item .timeline-content .date {
-  margin: 4px 0 0;
-  color: #555;
-  font-size: 0.98rem;
-}
-
-/* ----- MOBILE: stacked layout with consistent card width and aligned bubble ----- */
-@media (max-width: 767px) {
-  .timeline {
-    padding: 1.5rem 0;
-  }
-
-  /* move the center line a little in from left edge for mobile */
-  .timeline::after {
-    left: 36px;           /* adjust only if needed for your layout */
-    width: 3px;
-    top: 12px;
-    bottom: 12px;
-    transform: none;
-  }
-
-  /* stacked full-width items; reserve space on left for the line + bubble */
-  .timeline-item {
-    width: 100% !important;
-    left: 0 !important;
-    right: auto !important;
-    padding-left: 96px;   /* reserve space for marker (36px line + bubble + gap) */
-    margin: 1.1rem 0;
+    padding: 10px 40px;
+    position: relative;
+    width: 50%;
     box-sizing: border-box;
-    text-align: left !important;
-    transform: none !important; /* cancel desktop translate */
-    max-width: none;
-  }
-
-  /* bubble centered on the mobile line using translateX */
-  .timeline-item::before {
-    left: 36px;           /* same as .timeline::after left */
-    top: 26px;
-    transform: translateX(-50%);
-  }
-
-  /* card content width: account for reserved left space */
-  .timeline-item .timeline-content {
-    width: calc(100% - 116px); /* 116 = left padding(96) + small gap */
-    padding: 14px 18px;
-    border-radius: 10px;
-  }
-
-  /* mobile typography */
-  .timeline-item .timeline-content h3 {
-    font-size: 1.05rem;
-    margin-bottom: 8px;
-  }
-  .timeline-item .timeline-content .institution,
-  .timeline-item .timeline-content .date {
-    font-size: 0.95rem;
-  }
 }
 
+/* circular marker that sits on the line */
+.timeline-item::after {
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: #fff;
+    border: 4px solid var(--primary-color);
+    top: 25px;
+    z-index: 2;
+}
+
+/* left side items (odd) */
+.timeline-item:nth-child(odd) {
+    left: 0;
+    text-align: right;
+}
+.timeline-item:nth-child(odd)::after {
+    right: -10px; /* marker sits on the center line */
+}
+
+/* right side items (even) */
+.timeline-item:nth-child(even) {
+    left: 50%;
+    text-align: left;
+}
+.timeline-item:nth-child(even)::after {
+    left: -10px; /* marker sits on the center line */
+}
+
+/* card content */
+.timeline-content {
+    background-color: var(--card-bg);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: var(--shadow);
+}
+
+/* tweak typography and spacing inside cards (keeps card sizes stable) */
+.timeline-content h3 {
+    margin-bottom: 6px;
+    font-size: 1.15rem;
+}
+.timeline-content .institution,
+.timeline-content .date {
+    color: #555;
+    margin: 4px 0 0;
+    font-size: 0.95rem;
+}
+
+/* ===== Mobile: stack items; move line left so it doesn't touch edge ===== */
+@media (max-width: 767px) {
+    .timeline {
+        padding: 1.5rem 0;
+    }
+
+    .timeline::after {
+        left: 20px; /* move line in from edge on mobile */
+        margin-left: 0;
+    }
+
+    .timeline-item,
+    .timeline-item:nth-child(odd),
+    .timeline-item:nth-child(even) {
+        width: 100%;
+        left: 0;
+        text-align: left;
+        padding: 12px 20px 12px 70px; /* reserve space for marker */
+    }
+
+    .timeline-item::after {
+        left: 20px; /* align bubble with moved line */
+        right: auto;
+        top: 22px;
+    }
+
+    .timeline-content {
+        display: block;
+        width: calc(100% - 90px); /* leave space for left marker */
+        padding: 14px 16px;
+    }
+
+    .timeline-content h3 {
+        font-size: 1.05rem;
+    }
+}
 
 /* === Internships === */
 .experience-grid {
