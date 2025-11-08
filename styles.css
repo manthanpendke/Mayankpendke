@@ -338,34 +338,65 @@ h2::after {
 }
 
 /* Mobile responsive stack */
+/* === Mobile timeline refinements (paste into styles.css, replace old mobile rules) === */
 @media (max-width: 767px) {
   .timeline {
-    padding: 2rem 0;
+    padding: 1.5rem 0;
   }
 
+  /* move the center line slightly in from the edge, keep fixed width */
   .timeline::after {
-    left: 20px;
+    left: 18px;          /* nudged in so it's not right at the edge */
+    width: 3px;
     transform: none;
+    top: 8px;
+    bottom: 8px;
   }
 
   .timeline-item {
     width: 100%;
-    padding-left: 70px;
-    margin: 1.5rem 0;
+    padding-left: 72px;  /* space for marker + comfortable gap */
+    margin: 1.1rem 0;    /* tighter vertical spacing */
     text-align: left !important;
   }
 
+  /* bubble aligned exactly on the line */
   .timeline-item::before {
-    left: 20px;
+    left: 18px;          /* aligns bubble center with line */
     right: auto;
-    top: 25px;
+    top: 22px;           /* vertical position relative to card */
+    width: 18px;
+    height: 18px;
+    border: 3px solid var(--primary-color);
+    background: #fff;
   }
 
-  .timeline-item:nth-child(odd),
-  .timeline-item:nth-child(even) {
-    left: 0;
+  /* ensure content is narrower so it doesn't appear too wide */
+  .timeline-item .timeline-content {
+    display: block;
+    width: calc(100% - 92px); /* account for left padding + marker */
+    padding: 14px 18px;
+    border-radius: 10px;
+    box-shadow: var(--shadow);
+  }
+
+  /* slightly smaller typography for mobile */
+  .timeline-item .timeline-content h3 {
+    font-size: 1.05rem;
+    line-height: 1.2;
+    margin-bottom: 6px;
+  }
+  .timeline-item .timeline-content .institution,
+  .timeline-item .timeline-content .date {
+    font-size: 0.94rem;
+  }
+
+  /* keep marker visible spacing when multiple stacked items */
+  .timeline-item + .timeline-item {
+    margin-top: 1rem;
   }
 }
+
 
 /* === Internships === */
 .experience-grid {
