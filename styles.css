@@ -235,58 +235,112 @@ h2::after {
 }
 
 /* === Timeline (Education) === */
+/* ===== Education timeline (clean alternating layout) ===== */
 .timeline {
-    position: relative;
-    max-width: 800px;
-    margin: 0 auto;
+  position: relative;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 2rem 0;
 }
 
+/* central vertical line */
 .timeline::after {
-    content: '';
-    position: absolute;
-    width: 4px;
-    background-color: var(--primary-color);
-    top: 0;
-    bottom: 0;
-    left: 50%;
-    margin-left: -2px;
+  content: '';
+  position: absolute;
+  width: 4px;
+  background-color: var(--primary-color);
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 2px;
 }
 
+/* timeline item container */
 .timeline-item {
-    padding: 10px 40px;
-    position: relative;
-    width: 50%;
+  position: relative;
+  width: calc(50% - 40px); /* 40px gap from center line */
+  padding: 0 20px;
+  box-sizing: border-box;
+  margin: 2rem 0;
 }
 
-.timeline-item::after {
-    content: '';
-    position: absolute;
-    width: 20px;
-    height: 20px;
-    right: -10px;
-    background-color: white;
-    border: 4px solid var(--primary-color);
-    top: 25px;
-    border-radius: 50%;
-    z-index: 1;
+/* the circle marker */
+.timeline-item::before {
+  content: '';
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: white;
+  border: 4px solid var(--primary-color);
+  top: 20px;
+  z-index: 2;
 }
 
+/* left (odd) items */
 .timeline-item:nth-child(odd) {
-    left: 0;
-    text-align: right;
+  left: 0;
+  text-align: right;
+}
+.timeline-item:nth-child(odd)::before {
+  right: -9px; /* sits on the vertical line */
 }
 
+/* right (even) items */
 .timeline-item:nth-child(even) {
-    left: 50%;
-    text-align: left;
+  left: 50%;
+  text-align: left;
+}
+.timeline-item:nth-child(even)::before {
+  left: -9px; /* sits on the vertical line */
 }
 
-.timeline-content {
-    background-color: var(--card-bg);
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: var(--shadow);
+/* content card inside each item */
+.timeline-item .timeline-content {
+  background-color: var(--card-bg);
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: var(--shadow);
+  display: inline-block;
+  max-width: 100%;
 }
+
+/* Make cards a bit narrower on smaller screens visually */
+.timeline-item .timeline-content h3 {
+  margin-bottom: 6px;
+  font-size: 1.15rem;
+}
+
+/* Responsive: stack items and move the line left */
+@media (max-width: 767px) {
+  .timeline::after {
+    left: 20px;
+  }
+
+  .timeline-item {
+    width: 100%;
+    padding-left: 60px; /* space for marker */
+    padding-right: 20px;
+    text-align: left !important;
+  }
+
+  .timeline-item::before {
+    left: 20px;
+    right: auto;
+    top: 22px;
+  }
+
+  .timeline-item:nth-child(odd),
+  .timeline-item:nth-child(even) {
+    left: 0;
+  }
+
+  .timeline-item .timeline-content {
+    width: 100%;
+  }
+}
+
 
 /* === Internships === */
 .experience-grid {
